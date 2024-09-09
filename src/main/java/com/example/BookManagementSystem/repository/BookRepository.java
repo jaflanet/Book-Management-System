@@ -13,10 +13,12 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BookRepository extends JpaRepository<BookEntity, Long> {
-//    List<BookEntity> findByTitleContainingOrAuthor_NameContainingOrGenre_NameContaining(
-//            String title, String authorName, String genreName);
+    List<BookEntity> findByTitleContainingOrAuthor_NameContainingOrGenre_NameContaining(
+            String title, String authorName, String genreName);
 
     Page<BookEntity> findAll(Pageable pageable);
+
+//    Optional<BookEntity> findByTitleContainingOrAuthor_NameContainingOrGenre_NameContaining(String title, String authorName, String genreName);
 }
 
 //public interface AuthorRepository extends JpaRepository<AuthorEntity, Long> {
