@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.awt.print.Book;
 import java.util.List;
+import java.util.Optional;
 
 public interface BookRepository extends JpaRepository<BookEntity, Long> {
     List<BookEntity> findByTitleContainingOrAuthor_NameContainingOrGenre_NameContaining(
@@ -15,7 +16,7 @@ public interface BookRepository extends JpaRepository<BookEntity, Long> {
 }
 
 public interface AuthorRepository extends JpaRepository<AuthorEntity, Long> {
-    List
+    Optional<BookEntity> findBy
 }
 
 public interface GenreRepository extends JpaRepository<GenreEntity, Long> {
