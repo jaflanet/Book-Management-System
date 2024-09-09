@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/books")
-public class LibraryController {
+public class BookController {
     @Autowired
     private BookService bookService;
 
