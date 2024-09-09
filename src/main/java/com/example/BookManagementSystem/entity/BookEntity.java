@@ -22,13 +22,15 @@ public class BookEntity {
     @JsonProperty("title")
     private String title;
 
-    @Column(nullable = false, length = 100)
+    @ManyToOne
+    @JoinColumn(name = "author_id")
     @JsonProperty("author")
-    private String author;
+    private AuthorEntity author;
 
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
     @JsonProperty("genre")
-    private String genre;
+    private GenreEntity genre;
 
     @Column(name = "published_date" ,nullable = false)
     @JsonProperty("published_date")
