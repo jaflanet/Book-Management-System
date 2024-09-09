@@ -1,4 +1,4 @@
 package com.example.BookManagementSystem.services.Impl;
 
-public class EmployeeServiceImpl {
+public class BookServiceImpl {
 }

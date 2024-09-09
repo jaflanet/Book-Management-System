@@ -1,4 +1,4 @@
 package com.example.BookManagementSystem.services;
 
-public interface EmployeeService {
+public interface BookService {
 }
