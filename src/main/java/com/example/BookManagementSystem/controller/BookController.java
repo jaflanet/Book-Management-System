@@ -4,9 +4,12 @@ package com.example.BookManagementSystem.controller;
 import com.example.BookManagementSystem.entity.BookEntity;
 import com.example.BookManagementSystem.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,8 +20,8 @@ public class BookController {
     private BookService bookService;
 
     @PostMapping
-    public ResponseEntity<BookEntity> createBook(@RequestBody BookEntity book) {
-        return ResponseEntity.ok(bookService.saveBook(book));
+    public BookEntity createBook(@RequestBody BookEntity book) {
+        return bookService.createBook(book);
     }
 
     @GetMapping
@@ -27,15 +30,31 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<BookEntity>> getBookById(@PathVariable Long id) {
-        return ResponseEntity.ok(bookService.getBookById(id));
+    public ResponseEntity<BookEntity> getBookById(@PathVariable Long id) {
+        BookEntity book = bookService.getBookById(id);
+        if (book != null) {
+            return ResponseEntity.ok(book);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BookEntity> updateBook(@PathVariable Long id, @RequestBody BookEntity book) {
-        book.setId(id);
-        return ResponseEntity.ok(bookService.saveBook(book));
+    public ResponseEntity<BookEntity> updateBook(@PathVariable Long id, @RequestBody BookEntity bookDetails) {
+        BookEntity book = bookService.getBookById(id);
+        if (book != null) {
+            book.setTitle(bookDetails.getTitle());
+            book.setIsbn(bookDetails.getIsbn());
+            book.setPublishedDate(bookDetails.getPublishedDate());
+            book.setAuthor(bookDetails.getAuthor());
+            book.setGenre(bookDetails.getGenre());
+            BookEntity updatedBooks = bookService.createBook(book);
+            return ResponseEntity.ok(updatedBooks);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
@@ -43,13 +62,12 @@ public class BookController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<BookEntity>> searchBooks(
-            @RequestParam(required = false) String title,
-            @RequestParam(required = false) String author,
-            @RequestParam(required = false) String genre) {
-        return ResponseEntity.ok(bookService.searchBooks(title, author, genre));
+    @GetMapping("/page")
+    public Page<BookEntity> getAllEmployees(Pageable pageable) {
+        return bookService.getBooks(pageable);
     }
+
+
 }
 
 
