@@ -22,6 +22,10 @@ public class BookEntity {
     @JsonProperty("title")
     private String title;
 
+    @Column(nullable = false)
+    @JsonProperty("isbn")
+    private String isbn;
+
     @ManyToOne
     @JoinColumn(name = "author_id")
     @JsonProperty("author")
