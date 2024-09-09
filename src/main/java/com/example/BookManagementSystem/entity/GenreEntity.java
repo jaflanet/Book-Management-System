@@ -16,10 +16,6 @@ public class GenreEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "genre_id", referencedColumnName = "id", nullable = false)
-    private BookEntity genre;
-
     @JsonProperty
     private String name;
 }
