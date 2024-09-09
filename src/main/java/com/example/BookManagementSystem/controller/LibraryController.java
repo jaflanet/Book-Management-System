@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/books")
@@ -26,7 +27,7 @@ public class LibraryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BookEntity> getBookById(@PathVariable Long id) {
+    public ResponseEntity<Optional<BookEntity>> getBookById(@PathVariable Long id) {
         return ResponseEntity.ok(bookService.getBookById(id));
     }
 

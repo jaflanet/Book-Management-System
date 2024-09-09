@@ -15,12 +15,11 @@ public interface BookRepository extends JpaRepository<BookEntity, Long> {
             String title, String authorName, String genreName);
 }
 
-public interface AuthorRepository extends JpaRepository<AuthorEntity, Long> {
-    Optional<BookEntity> findBy
-}
-
-public interface GenreRepository extends JpaRepository<GenreEntity, Long> {
-
-}
+//public interface AuthorRepository extends JpaRepository<AuthorEntity, Long> {
+//}
+//
+//public interface GenreRepository extends JpaRepository<GenreEntity, Long> {
+//
+//}
 
 
