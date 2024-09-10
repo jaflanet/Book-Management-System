@@ -23,11 +23,6 @@ public class AuthorServiceImpl implements AuthorService {
         return authorRepository.save(author);
     }
 
-    @Override
-    public List<AuthorEntity> getAllAuthor() {
-        return List.of();
-    }
-
 
     public List<AuthorEntity> getAllAuthors() {
         return authorRepository.findAll();

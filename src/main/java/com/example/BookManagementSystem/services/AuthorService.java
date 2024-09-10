@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface AuthorService {
     AuthorEntity createAuthor(AuthorEntity author);
 
-    List<AuthorEntity> getAllAuthor();
+    List<AuthorEntity> getAllAuthors();
 
     AuthorEntity getAuthorById(Long id);
 
