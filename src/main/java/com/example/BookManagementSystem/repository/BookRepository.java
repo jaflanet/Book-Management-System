@@ -16,7 +16,7 @@ public interface BookRepository extends JpaRepository<BookEntity, Long> {
     List<BookEntity> findByTitleContainingOrAuthor_NameContainingOrGenre_NameContaining(
             String title, String authorName, String genreName);
 
-    Page<BookEntity> findAll(Pageable pageable);
+    List<BookEntity> findAll();
 
 //    Optional<BookEntity> findByTitleContainingOrAuthor_NameContainingOrGenre_NameContaining(String title, String authorName, String genreName);
 }
