@@ -90,6 +90,11 @@ public class BookServiceImpl implements BookService {
         return bookRepository.save(existingBook);
     }
 
+    public List<BookEntity> searchBooks(String title, String authorName, String genreName) {
+        return bookRepository.findByTitleContainingOrAuthor_NameContainingOrGenre_NameContaining(
+                title, authorName, genreName);
+    }
+
 
 
 

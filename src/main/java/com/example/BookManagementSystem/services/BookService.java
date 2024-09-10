@@ -22,4 +22,6 @@ public interface BookService {
     Page<BookEntity> getBooks(Pageable pageable);
 
     BookEntity updateBook (Long id, CreateBookRequest bookRequest);
+
+    List<BookEntity> searchBooks(String title, String authorName, String genreName);
 }

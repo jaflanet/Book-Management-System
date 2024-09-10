@@ -14,20 +14,11 @@ import java.util.Optional;
 
 @Repository
 public interface BookRepository extends JpaRepository<BookEntity, Long> {
-    Optional<BookEntity> findByTitleContainingIgnoreCase(String title);
-    Optional<BookEntity> findByAuthor_NameContainingIgnoreCase(String authorName);
-    Optional<BookEntity> findByGenre_NameContainingIgnoreCase(String genreName);
+    List<BookEntity> findByTitleContainingOrAuthor_NameContainingOrGenre_NameContaining(
+            String title, String authorName, String genreName);
     Page<BookEntity> findAll(Pageable pageable);
 }
 
 
-
-//
-//public interface AuthorRepository extends JpaRepository<AuthorEntity, Long> {
-//}
-//
-//public interface GenreRepository extends JpaRepository<GenreEntity, Long> {
-//
-//}
 
 
