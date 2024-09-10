@@ -20,7 +20,7 @@ public class GenreController {
     private GenreService genreService;
 
     @PostMapping
-    public GenreEntity createBook(@RequestBody GenreEntity genre) {
+    public GenreEntity createGenre(@RequestBody GenreEntity genre) {
         return genreService.createGenre(genre);
     }
 
@@ -30,7 +30,7 @@ public class GenreController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GenreEntity> getBookById(@PathVariable Long id) {
+    public ResponseEntity<GenreEntity> getGenreById(@PathVariable Long id) {
         GenreEntity genre = genreService.getGenreById(id);
         if (genre != null) {
             return ResponseEntity.ok(genre);
@@ -40,7 +40,7 @@ public class GenreController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<GenreEntity> updateBook(@PathVariable Long id, @RequestBody GenreEntity genreDetails) {
+    public ResponseEntity<GenreEntity> updateGenre(@PathVariable Long id, @RequestBody GenreEntity genreDetails) {
         GenreEntity genre = genreService.getGenreById(id);
         if (genre != null) {
             genre.setName(genreDetails.getName());
