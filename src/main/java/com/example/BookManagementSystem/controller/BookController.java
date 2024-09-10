@@ -2,6 +2,7 @@ package com.example.BookManagementSystem.controller;
 
 
 import com.example.BookManagementSystem.entity.BookEntity;
+import com.example.BookManagementSystem.request.CreateBookRequest;
 import com.example.BookManagementSystem.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,9 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/books")
@@ -20,7 +19,7 @@ public class BookController {
     private BookService bookService;
 
     @PostMapping
-    public BookEntity createBook(@RequestBody BookEntity book) {
+    public CreateBookRequest createBook(@RequestBody CreateBookRequest book) {
         return bookService.createBook(book);
     }
 
@@ -40,14 +39,14 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BookEntity> updateBook(@PathVariable Long id, @RequestBody BookEntity bookDetails) {
-        BookEntity book = bookService.getBookById(id);
+    public ResponseEntity<CreateBookRequest> updateBook(@PathVariable Long id, @RequestBody CreateBookRequest bookDetails) {
+        CreateBookRequest book = bookService.getBookById(id);
         if (book != null) {
             book.setTitle(bookDetails.getTitle());
             book.setIsbn(bookDetails.getIsbn());
-            book.setPublishedDate(bookDetails.getPublishedDate());
-            book.setAuthor(bookDetails.getAuthor());
-            book.setGenre(bookDetails.getGenre());
+            book.setPublished_date(bookDetails.getPublished_date());
+            book.setAuthor_id(bookDetails.getAuthor_id());
+            book.setGenre_id(bookDetails.getGenre_id());
             BookEntity updatedBooks = bookService.createBook(book);
             return ResponseEntity.ok(updatedBooks);
         } else {

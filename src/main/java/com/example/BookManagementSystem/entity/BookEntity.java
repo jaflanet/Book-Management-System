@@ -38,6 +38,6 @@ public class BookEntity {
 
     @Column(name = "published_date" ,nullable = false)
     @JsonProperty("published_date")
-    private LocalDate publishedDate;
+    private LocalDate published_date;
 
 }

@@ -3,6 +3,7 @@ package com.example.BookManagementSystem.services.Impl;
 
 import com.example.BookManagementSystem.entity.BookEntity;
 import com.example.BookManagementSystem.repository.BookRepository;
+import com.example.BookManagementSystem.request.CreateBookRequest;
 import com.example.BookManagementSystem.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -19,7 +19,7 @@ public class BookServiceImpl implements BookService {
     private BookRepository bookRepository;
 
 
-    public BookEntity createBook(BookEntity book) {
+    public BookEntity createBook(CreateBookRequest book) {
         return bookRepository.save(book);
     }
 
