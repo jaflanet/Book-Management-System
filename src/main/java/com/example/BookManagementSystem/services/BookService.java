@@ -6,11 +6,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.awt.print.Book;
 import java.util.List;
 
 @Repository
 public interface BookService {
-    CreateBookRequest createBook(CreateBookRequest book);
+    BookEntity createBook(CreateBookRequest book);
 
     List<BookEntity> getAllBooks();
 
@@ -19,4 +20,6 @@ public interface BookService {
     void deleteBook(Long id);
 
     Page<BookEntity> getBooks(Pageable pageable);
+
+//    BookEntity updateBook (Long id, CreateBookRequest bookRequest);
 }
