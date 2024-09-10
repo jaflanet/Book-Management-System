@@ -39,21 +39,11 @@ public class BookController {
         }
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<CreateBookRequest> updateBook(@PathVariable Long id, @RequestBody CreateBookRequest bookDetails) {
-//        CreateBookRequest book = bookService.getBookById(id);
-//        if (book != null) {
-//            book.setTitle(bookDetails.getTitle());
-//            book.setIsbn(bookDetails.getIsbn());
-//            book.setPublished_date(bookDetails.getPublished_date());
-//            book.setAuthor_id(bookDetails.getAuthor_id());
-//            book.setGenre_id(bookDetails.getGenre_id());
-//            BookEntity updatedBooks = bookService.createBook(book);
-//            return ResponseEntity.ok(updatedBooks);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<BookEntity> updateBook(@PathVariable Long id, @RequestBody CreateBookRequest book) {
+        BookEntity savedBook = bookService.updateBook(id,book);
+        return ResponseEntity.ok(savedBook);
+    }
 
 
     @DeleteMapping("/{id}")

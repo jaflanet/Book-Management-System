@@ -21,5 +21,5 @@ public interface BookService {
 
     Page<BookEntity> getBooks(Pageable pageable);
 
-//    BookEntity updateBook (Long id, CreateBookRequest bookRequest);
+    BookEntity updateBook (Long id, CreateBookRequest bookRequest);
 }

@@ -53,11 +53,10 @@ public class BookServiceImpl implements BookService {
         AuthorEntity author = authorRepository.findById((long) createBookDTO.getAuthor_id())
                 .orElseThrow(() -> new RuntimeException("Author not found"));
 
-        // Fetch the genre by ID using the injected instance
+
         GenreEntity genre = genreRepository.findById((long) createBookDTO.getGenre_id())
                 .orElseThrow(() -> new RuntimeException("Genre not found"));
 
-        // Create a new book entity
         BookEntity book = new BookEntity();
         book.setTitle(createBookDTO.getTitle());
         book.setIsbn(createBookDTO.getIsbn());
@@ -68,25 +67,31 @@ public class BookServiceImpl implements BookService {
         return bookRepository.save(book);
     }
 
-//    @Override
-//    public BookEntity updateBook(Long id, CreateBookRequest createBookDTO) {
-//        AuthorEntity author = authorRepository.findById((long) createBookDTO.getAuthor_id())
-//                .orElseThrow(() -> new RuntimeException("Author not found"));
-//
-//        // Fetch the genre by ID using the injected instance
-//        GenreEntity genre = genreRepository.findById((long) createBookDTO.getGenre_id())
-//                .orElseThrow(() -> new RuntimeException("Genre not found"));
-//
-//        // Create a new book entity
-//        BookEntity book = new BookEntity();
-//        book.setTitle(createBookDTO.getTitle());
-//        book.setIsbn(createBookDTO.getIsbn());
-//        book.setAuthor(author);
-//        book.setGenre(genre);
-//        book.setPublished_date(createBookDTO.getPublished_date());
-//
-//        return bookRepository.save(book);
-//    }
+    @Override
+    public BookEntity updateBook(Long id, CreateBookRequest createBookDTO) {
+
+        BookEntity existingBook = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Book not found"));
+
+
+        AuthorEntity author = authorRepository.findById((long) createBookDTO.getAuthor_id())
+                .orElseThrow(() -> new RuntimeException("Author not found"));
+
+        GenreEntity genre = genreRepository.findById((long) createBookDTO.getGenre_id())
+                .orElseThrow(() -> new RuntimeException("Genre not found"));
+
+
+        existingBook.setTitle(createBookDTO.getTitle());
+        existingBook.setIsbn(createBookDTO.getIsbn());
+        existingBook.setAuthor(author);
+        existingBook.setGenre(genre);
+        existingBook.setPublished_date(createBookDTO.getPublished_date());
+
+        return bookRepository.save(existingBook);
+    }
+
+
+
 
 }
 
