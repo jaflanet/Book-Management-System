@@ -63,7 +63,7 @@ public class BookController {
     }
 
     @GetMapping("/page")
-    public Page<BookEntity> getAllEmployees(Pageable pageable) {
+    public Page<BookEntity> getAllBooks(Pageable pageable) {
         return bookService.getBooks(pageable);
     }
 
