@@ -6,10 +6,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Setter
 @Getter
-@Table(name = "genre")
+@Table(name = "genres")
 
 public class GenreEntity {
     @Id
@@ -18,4 +21,7 @@ public class GenreEntity {
 
     @JsonProperty
     private String name;
+
+    @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL)
+    private List<BookEntity> books = new ArrayList<>();
 }
