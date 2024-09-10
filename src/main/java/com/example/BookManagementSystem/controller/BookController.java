@@ -59,9 +59,9 @@ public class BookController {
 
     @GetMapping("/search")
     public ResponseEntity<List<BookEntity>> searchBooks(
-            @RequestParam(name="title",required = false, defaultValue = " ") String title,
-            @RequestParam(name="author",required = false, defaultValue = " ") String author,
-            @RequestParam(name="genre",required = false, defaultValue = " ") String genre) {
+            @RequestParam(name="title",required = false, defaultValue = "") String title,
+            @RequestParam(name="author",required = false, defaultValue = "") String author,
+            @RequestParam(name="genre",required = false, defaultValue = "") String genre) {
         return ResponseEntity.ok(bookService.searchBooks(title, author, genre));
     }
 
