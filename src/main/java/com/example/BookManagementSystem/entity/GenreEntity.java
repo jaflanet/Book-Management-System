@@ -22,6 +22,4 @@ public class GenreEntity {
     @JsonProperty
     private String name;
 
-    @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL)
-    private List<BookEntity> books = new ArrayList<>();
 }
